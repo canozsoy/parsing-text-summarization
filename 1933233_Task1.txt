@@ -6,7 +6,7 @@ python3 -m spacy convert data/tr_imst-ud-test.conllu data/test -c conllu
 
 python3 -m spacy train config.cfg --output output
 
-python3 -m spacy benchmark accuracy output/model-best data/test --output output/test-result
+python3 -m spacy benchmark accuracy output/model-last data/test --output output/test-result
 
 python3 -m spacy apply output/model-best apply/apply_first output/result1
 python3 -m spacy apply output/model-best apply/apply_first output/result1
