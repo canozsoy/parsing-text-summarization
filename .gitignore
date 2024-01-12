@@ -1,1 +1,7 @@
 *.pdf
+output/*
+data/dev/*
+data/test/*
+data/train/*
+*.docx
+asdf.py
