@@ -1,8 +1,8 @@
 python3 -m spacy init fill-config ./base_config.cfg ./config.cfg
 
-python3 -m spacy convert data/tr_imst-ud-dev.conllu data/dev -c conllu
-python3 -m spacy convert data/tr_imst-ud-train.conllu data/train -c conllu
-python3 -m spacy convert data/tr_imst-ud-test.conllu data/test -c conllu
+python3 -m spacy convert data/tr_imst-ud-dev.conllu data/dev -c conllu -n 10
+python3 -m spacy convert data/tr_imst-ud-train.conllu data/train -c conllu -n 10
+python3 -m spacy convert data/tr_imst-ud-test.conllu data/test -c conllu -n 10
 
 python3 -m spacy train config.cfg --output output
 
