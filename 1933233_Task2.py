@@ -153,13 +153,13 @@ def print_summary(top_five_dict, document_name, megadoc):
     print("Summary for document " + document_name + "\n\n" + result)
 
 def main():
-    document_name = "07_1949"
     megadoc = get_megadoc()
     vectorizer = get_tfidf_vectorizer(megadoc)
     top_five_dict = get_top_five_sentence_dict(megadoc, vectorizer)
     print_summary(top_five_dict, document_name, megadoc)
 
 if __name__ == "__main__":
+    document_name = "07_854"
     nltk.download('stopwords')
     stop_words = set(stopwords.words("english"))
     main()
