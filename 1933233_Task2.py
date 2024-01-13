@@ -52,7 +52,7 @@ def read_and_preprocess(filename, dirname):
         sentences.append(joined_sentence)
         document += joined_sentence
     
-    return {"document": document, "sentences": sentences}
+    return {"document": document, "sentences": sentences, "original_sentence": matched}
 
 def get_megadoc():
     megadoc_filename = "megadoc.json"
@@ -71,7 +71,9 @@ def get_megadoc():
             continue
         doc = read_and_preprocess(filename, files_dirname)
         filename_without_extension = filename.replace(".xml", "")
-        megadoc[filename_without_extension] = {"document": doc["document"], "sentences": doc["sentences"]}
+        megadoc[filename_without_extension] = {"document": doc["document"],
+                                                "sentences": doc["sentences"],
+                                                  "original_sentence": doc["original_sentence"]}
 
     write_to_json_file(megadoc_filename, megadoc)
 
@@ -145,13 +147,13 @@ def print_summary(top_five_dict, document_name, megadoc):
 
     for index_text in indexes:
         index = indexes[index_text]
-        all_sentences.append(megadoc[document_name]["sentences"][index])
+        all_sentences.append(megadoc[document_name]["original_sentence"][index])
     
     result = "\n".join(all_sentences)
-    print("Summary for document" + document_name + "\n" + result)
+    print("Summary for document " + document_name + "\n\n" + result)
 
 def main():
-    document_name = "06_28"
+    document_name = "07_1949"
     megadoc = get_megadoc()
     vectorizer = get_tfidf_vectorizer(megadoc)
     top_five_dict = get_top_five_sentence_dict(megadoc, vectorizer)
