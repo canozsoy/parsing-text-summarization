@@ -6,3 +6,8 @@ data/train/*
 *.docx
 asdf.py
 Task2
+megadoc.json
+vectorizer.pickle
+vectorized-sentences.json
+top-five-dict.json
+.DS_Store
