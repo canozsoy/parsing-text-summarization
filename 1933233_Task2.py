@@ -67,7 +67,7 @@ def get_megadoc():
 
     for filename in filenames:
         # Below files are corrupted or not utf-8 encoded
-        if filename in ["06_1261.xml", "06_782.xml", "09_585.xml", "06_1718.xml"]:
+        if filename in corrupted_files:
             continue
         doc = read_and_preprocess(filename, files_dirname)
         filename_without_extension = filename.replace(".xml", "")
@@ -152,14 +152,20 @@ def print_summary(top_five_dict, document_name, megadoc):
     result = "\n".join(all_sentences)
     print("Summary for document " + document_name + "\n\n" + result)
 
+def check_if_corrupted_file(document_name):
+    if document_name in corrupted_files:
+        raise Exception("Document is one of the corrupted files")
+
 def main():
+    check_if_corrupted_file(document_name)
     megadoc = get_megadoc()
     vectorizer = get_tfidf_vectorizer(megadoc)
     top_five_dict = get_top_five_sentence_dict(megadoc, vectorizer)
     print_summary(top_five_dict, document_name, megadoc)
 
 if __name__ == "__main__":
-    document_name = "07_854"
+    document_name = "07_1"
+    corrupted_files = ["06_1261.xml", "06_782.xml", "09_585.xml", "06_1718.xml"]
     nltk.download('stopwords')
     stop_words = set(stopwords.words("english"))
     main()
